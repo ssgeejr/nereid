@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mvn clean package
+cd docker
+docker build -t nereid .
+docker run -ti --rm --name nereid -p 8080:8080 nereid
+cd ..

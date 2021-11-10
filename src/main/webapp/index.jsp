@@ -16,11 +16,10 @@
 
 
 
-<div align="center" style="width:400px">
 <form>
 
 
-	<table style="width: 100%" border=".5">
+	<table style="width: 400px; border:1px solid black;margin-left:auto;margin-right:auto;" >
 		<tr>
 			<td>Redis Active-Active Testing []</td>
 		</tr>
@@ -51,7 +50,6 @@
 
 
 </form>
-</div>
 
 
 
