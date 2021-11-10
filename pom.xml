@@ -38,7 +38,7 @@
 					<fileset>
 						<directory>docker</directory>
 						<includes>
-							<include>nereid.war</include>
+							<include>ROOT.war</include>
 						</includes>
 						<followSymlinks>false</followSymlinks>
 					</fileset>
@@ -50,7 +50,7 @@
 			<artifactId>maven-war-plugin</artifactId>
 			<version>2.3</version>
 			<configuration>
-				<warName>nereid</warName>
+				<warName>ROOT</warName>
 				<outputDirectory>docker/</outputDirectory>
 			</configuration>
 		</plugin>
