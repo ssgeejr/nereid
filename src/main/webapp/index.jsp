@@ -93,14 +93,14 @@
 					<td style="width: 150px" class="auto-style1">
 					<input name="get" type="button"  style="width: 150px"  value="GET" value="SET" ONCLICK="getAction()" /></td>
 					<td style="width: 150px">
-					<input name=getkey type="text"  style="width: 150px" /><%= getvalue %></td>
+					<input name=getkey type="text"  style="width: 150px" value="<%= getvalue %>"/></td>
 					<td style="width: 150px">&nbsp;</td>
 
 				</tr>
 				<tr>
 					<td style="width: 50%" class="auto-style1">RESULT</td>
 					<td style="width: 50%" colspan="2">
-					<input name="result" type="text"  style="width: 300px" value="<%= message %>" readonly /></td>
+					<input name="result" type="text"  style="width: 300px" value="<%= value %>" readonly /></td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center"><%= message %></td>
