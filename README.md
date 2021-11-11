@@ -23,3 +23,10 @@ and  `rediso.local` and `*.rediso.local` within your rediso.local hosted zone
 To manually start the conainter use: 
 
 `docker run -ti --rm --name nereid -e REDIS_SERVER='${REDIS_SERVER}' -p 8080:8080 nereid`
+
+
+#### Redis Configuration 
+
+```
+crdb-cli crdb create --name test --memory-size 1gb --port 12000 --password 12345 --shards-count 1 --replication false --instance fqdn=redisv.local,url=http://###.###.###.###:8080,replication_endpoint=###.###.###.###,username=<username>,password=<password> --instance fqdn=rediso.local,url=http://###.###.###.###:8080,replication_endpoint=###.###.###.###,username=<username>,password=<password>
+```

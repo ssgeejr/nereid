@@ -26,7 +26,7 @@
 <form>
 
 
-	<table style="width: 400px; border:1px solid black;margin-left:auto;margin-right:auto;" >
+	<table style="width: 450px; border:1px solid black;margin-left:auto;margin-right:auto;" >
 		<tr>
 			<td style="text-align:center">Redis Active-Active Testing [<%= servername %>]</td>
 		</tr>
@@ -34,21 +34,25 @@
 			<td>
 			<table style="width: 100%">
 				<tr>
-					<td style="width: 50%" class="auto-style1">
+					<td style="width: 150px" class="auto-style1">
 					<input name="set" type="submit"  style="width: 150px"  value="SET" /></td>
-					<td style="width: 50%">
-					<input name="settx" type="text" style="width: 150px" />&nbsp;</td>
+					<td style="width: 150px">
+					<input name="settx" type="text" style="width: 150px" /></td>
+					<td style="width: 150px">
+					<input name="settx" type="text" style="width: 150px" /></td>
 				</tr>
 				<tr>
-					<td style="width: 50%" class="auto-style1">
+					<td style="width: 150px" class="auto-style1">
 					<input name="get" type="submit"  style="width: 150px"  value="GET" /></td>
-					<td style="width: 50%">
+					<td style="width: 150px">
 					<input name="gettx" type="text"  style="width: 150px" /></td>
+					<td style="width: 150px">&nbsp;</td>
+
 				</tr>
 				<tr>
 					<td style="width: 50%" class="auto-style1">RESULT</td>
-					<td style="width: 50%">
-					<input name="result" type="text"  style="width: 150px" readonly /></td>
+					<td style="width: 50%" colspan="2">
+					<input name="result" type="text"  style="width: 300px" readonly /></td>
 				</tr>
 			</table>
 			</td>
