@@ -39,7 +39,7 @@
 			}
 			message = "SUCCESS";
 		}catch(Exception ex){
-			ex.printStackTrace()
+			ex.printStackTrace();
 			message = ex.getMessage();
 		}
 	}
