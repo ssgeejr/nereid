@@ -5,5 +5,7 @@ services:
         container_name: nereid
         environment:
             REDIS_SERVER: ${REDIS_SERVER}
+            REDIS_PORT: ${REDIS_PORT}
+            REDIS_AUTH: ${REDIS_AUTH}
         ports:
             - 8080:8080
