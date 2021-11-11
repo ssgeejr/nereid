@@ -15,9 +15,14 @@
 	if(action != null){
 		System.out.println("ACTION [" + action + "]");
 		try{
-//			RedisDataManager rdm = new RedisDataManager();
-//			if		
-			
+			RedisDataManager rdm = new RedisDataManager();
+			if(action.equals("set")){
+				rdm.setKeyValue(request.getParameter("setkey"), request.getParameter("setval"));
+			}else if(action.equals("get")){
+				getvalue = request.getParameter("getkey");
+				value = rdm.getValue(getvalue);
+			}
+			message = "SUCCESS";
 		}catch(Exception ex){
 			message = ex.getMessage();
 		}
@@ -64,9 +69,9 @@
 					<td style="width: 150px" class="auto-style1">
 					<input name="set" type="button"  style="width: 150px"  value="SET" ONCLICK="setAction()" /></td>
 					<td style="width: 150px">
-					<input name="settx" type="text" style="width: 150px" /></td>
+					<input name="setkey" type="text" style="width: 150px" /></td>
 					<td style="width: 150px">
-					<input name="settx" type="text" style="width: 150px" /></td>
+					<input name="setval" type="text" style="width: 150px" /></td>
 				</tr>
 				<tr>
 					<td style="width: 150px" class="auto-style1">
