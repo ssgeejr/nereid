@@ -54,6 +54,8 @@
 					<td style="width: 50%" colspan="2">
 					<input name="result" type="text"  style="width: 300px" readonly /></td>
 				</tr>
+				<tr>
+					<td colspan="3" align="center">&nbsp;</td>
 			</table>
 			</td>
 		</tr>
