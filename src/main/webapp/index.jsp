@@ -20,6 +20,10 @@
 				rdm.setKeyValue(request.getParameter("setkey"), request.getParameter("setval"));
 			}else if(action.equals("get")){
 				getvalue = request.getParameter("getkey");
+				if(getvalue == null){
+					message = "GET VALUE MUST NOT BE NULL";
+					return;
+				}
 				value = rdm.getValue(getvalue);
 			}
 			message = "SUCCESS";
@@ -84,7 +88,7 @@
 				<tr>
 					<td style="width: 50%" class="auto-style1">RESULT</td>
 					<td style="width: 50%" colspan="2">
-					<input name="result" type="text"  style="width: 300px" readonly /><%= message %></td>
+					<input name="result" type="text"  style="width: 300px" value="<%= message %>" readonly /></td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center"><%= message %></td>
