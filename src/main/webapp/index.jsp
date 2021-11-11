@@ -1,6 +1,13 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
+
+<%@page import="java.sql.*, javax.sql.*, javax.naming.*, java.util.*"%>
+<%@page import="java.util.Map" %>
+<%
+     Map<String, String> env = System.getenv();
+     String servername = env.get("REDIS_SERVER");
+%>
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -21,7 +28,7 @@
 
 	<table style="width: 400px; border:1px solid black;margin-left:auto;margin-right:auto;" >
 		<tr>
-			<td>Redis Active-Active Testing []</td>
+			<td style="text-align:center">Redis Active-Active Testing [<%= servername %>]</td>
 		</tr>
 		<tr>
 			<td>

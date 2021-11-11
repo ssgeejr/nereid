@@ -20,4 +20,6 @@ and  `rediso.local` and `*.rediso.local` within your rediso.local hosted zone
 
  
 
+To manually start the conainter use: 
 
+`docker run -ti --rm --name nereid -e REDIS_SERVER='${REDIS_SERVER}' -p 8080:8080 nereid`
