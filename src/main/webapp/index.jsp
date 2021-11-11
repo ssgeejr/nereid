@@ -20,6 +20,7 @@
 				rdm.setKeyValue(request.getParameter("setkey"), request.getParameter("setval"));
 			}else if(action.equals("get")){
 				getvalue = request.getParameter("getkey");
+				
 				if(getvalue == null){
 					message = "GET VALUE MUST NOT BE NULL";
 					return;
@@ -81,7 +82,7 @@
 					<td style="width: 150px" class="auto-style1">
 					<input name="get" type="button"  style="width: 150px"  value="GET" value="SET" ONCLICK="getAction()" /></td>
 					<td style="width: 150px">
-					<input name="gettx" type="text"  style="width: 150px" /><%= getvalue %></td>
+					<input name=getkey type="text"  style="width: 150px" /><%= getvalue %></td>
 					<td style="width: 150px">&nbsp;</td>
 
 				</tr>
