@@ -34,3 +34,4 @@ target/
 */target/**
 log/
 logs/
+/bin/
