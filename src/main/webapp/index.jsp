@@ -13,7 +13,7 @@
 		action = request.getParameter("action");
 	}catch(Exception ex){}
 	if(action != null){
-		System.out.println("ACTION [" + action + "]");
+//		System.out.println("ACTION [" + action + "]");
 		try{
 			RedisDataManager rdm = new RedisDataManager();
 			
@@ -21,13 +21,14 @@
 			
 			
 			if(action.equals("set")){
-				System.out.println("SET_ACTION");
-				System.out.println(request.getParameter("setkey"));
-				System.out.println(request.getParameter("setval"));
+//				System.out.println("SET_ACTION");
+//				System.out.println(request.getParameter("setkey"));
+//				System.out.println(request.getParameter("setval"));
 				rdm.setKeyValue(request.getParameter("setkey"), request.getParameter("setval"));
+				message = "KEY SET";
 			}else if(action.equals("get")){
-				System.out.println("GET_ACTION");
-				System.out.println(request.getParameter("getkey"));
+//				System.out.println("GET_ACTION");
+//				System.out.println(request.getParameter("getkey"));
 				
 				getvalue = request.getParameter("getkey");
 				
@@ -36,8 +37,9 @@
 					return;
 				}
 				value = rdm.getValue(getvalue);
+				message = "";
 			}
-			message = "SUCCESS";
+			
 		}catch(Exception ex){
 			ex.printStackTrace();
 			message = ex.getMessage();
@@ -53,26 +55,23 @@
 	text-align: right;
 }
 </style>
-	<SCRIPT LANGUAGE="JavaScript">
-           <!--
-           function setAction(){
-               document.redis.action.value = "set"
-           	   redis.submit()
-           }    
-           function getAction(){
-               document.redis.action.value = "get"
-           	   redis.submit()
-           }         
-           // --> 
-	</SCRIPT>
+<script LANGUAGE="JavaScript">
+          <!--
+          function setAction(){
+              document.redis.action.value = "set"
+          	   redis.submit()
+          }    
+          function getAction(){
+              document.redis.action.value = "get"
+          	   redis.submit()
+          }         
+          // --> 
+</script>
 </head>
 
 <body>
 
-
-
 <form NAME="redis" ACTION="index.jsp" METHOD="POST">
-
 
 	<table style="width: 450px; border:1px solid black;margin-left:auto;margin-right:auto;" >
 		<tr>
