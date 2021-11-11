@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mvn clean package
+cd docker
+docker build -t nereid .
+docker run -ti --rm --name nereid \
+	-e REDIS_SERVER='redisv.local' \
+	-e REDIS_PORT='12000' \
+	-e REDIS_AUTH='12345' \
+	-p 8080:8080 nereid
+cd ..

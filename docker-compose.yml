@@ -1,0 +1,9 @@
+version: '3.2'
+services:
+    nereid:
+        image: nereid
+        container_name: nereid
+        environment:
+            REDIS_SERVER: ${REDIS_SERVER}
+        ports:
+            - 8080:8080
