@@ -132,7 +132,7 @@
 		    <ol>
 			    <li>REDIS_SERVER: <%= server  %></li>
 			    <li>REDIS_PORT: <%= port %></li>
-			    <li>RUNTIME: <%= runtime %></li>
+			    <li>RUNTIME: <%= runtime %> ms</li>
 		    </ol>
 		 </div>
 		</td>
