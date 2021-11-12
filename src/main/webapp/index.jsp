@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 
-<%@page import="java.sql.*, javax.sql.*, javax.naming.*, java.util.*"%>
+<%@page import="java.util.*, java.util.Map.Entry"%>
 <%@page import="redis.nereid.*" %>
 <%
-	String message = "";
+	Map<String, String> env = System.getenv();
+    String location = env.get("TOMCAT_LOCATION");
+    String server = env.get("REDIS_SERVER");
+    String port = env.get("REDIS_PORT");
+    long start = System.currentTimeMillis();
+    String runtime = "-1";
+
+	String message = "&nbsp";
 	String value = "";
 	String getvalue = "";
 	String action = null;
@@ -37,24 +44,28 @@
 					return;
 				}
 				value = rdm.getValue(getvalue);
-				message = "";
+				message = "&nbsp";
 			}
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
 			message = ex.getMessage();
 		}
+		
+		long end = System.currentTimeMillis();
+		runtime = String.valueOf((end-start));
 	}
 %>
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Nereid Test Instance</title>
+<title>Nereid Test Instance [<%= location %>]</title>
 <style type="text/css">
 .auto-style1 {
 	text-align: right;
 }
 </style>
+<script src="jquery.min.js"></script>
 <script LANGUAGE="JavaScript">
           <!--
           function setAction(){
@@ -64,8 +75,14 @@
           function getAction(){
               document.redis.action.value = "get"
           	   redis.submit()
-          }         
-          // --> 
+          }      
+          
+		$(document).ready(function(){
+		    $('#show').click(function() {
+		      $('.menu').toggle("slide");
+		    });
+		});
+    // --> 
 </script>
 </head>
 
@@ -75,7 +92,7 @@
 
 	<table style="width: 450px; border:1px solid black;margin-left:auto;margin-right:auto;" >
 		<tr>
-			<td style="text-align:center">Redis Active-Active Testing</td>
+			<td style="text-align:center">Redis Active-Active Testing [<%= location %>]</td>
 		</tr>
 		<tr>
 			<td>
@@ -103,8 +120,22 @@
 				</tr>
 				<tr>
 					<td colspan="3" align="center"><%= message %></td>
+				</tr>
+				
 			</table>
 			</td>
+		</tr>
+		<tr>
+		<td>
+		<div id="show">Click to Show/ Hide Server Details</div>
+		 <div class="menu" style="display: none;">
+		    <ol>
+			    <li>REDIS_SERVER: <%= server  %></li>
+			    <li>REDIS_PORT: <%= port %></li>
+			    <li>RUNTIME: <%= runtime %> ms</li>
+		    </ol>
+		 </div>
+		</td>
 		</tr>
 	</table>
 

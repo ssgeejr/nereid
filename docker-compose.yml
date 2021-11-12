@@ -7,5 +7,6 @@ services:
             REDIS_SERVER: ${REDIS_SERVER}
             REDIS_PORT: ${REDIS_PORT}
             REDIS_AUTH: ${REDIS_AUTH}
+            TOMCAT_LOCATION: ${TOMCAT_LOCATION}
         ports:
             - 8080:8080
