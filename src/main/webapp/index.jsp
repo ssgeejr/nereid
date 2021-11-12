@@ -10,6 +10,7 @@
     String server = env.get("REDIS_SERVER");
     String port = env.get("REDIS_PORT");
     long start = System.currentTimeMillis();
+    String runtime = "-1";
 
 	String message = "&nbsp";
 	String value = "";
@@ -52,7 +53,7 @@
 		}
 		
 		long end = System.currentTimeMillis();
-		String runtime = String.valueOf((end-start))
+		runtime = String.valueOf((end-start));
 	}
 %>
 <head>
