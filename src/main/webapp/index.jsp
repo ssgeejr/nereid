@@ -55,6 +55,7 @@
 	text-align: right;
 }
 </style>
+<script src="jquery.min.js"></script>
 <script LANGUAGE="JavaScript">
           <!--
           function setAction(){
@@ -64,8 +65,14 @@
           function getAction(){
               document.redis.action.value = "get"
           	   redis.submit()
-          }         
-          // --> 
+          }      
+          
+		$(document).ready(function(){
+		    $('#show').click(function() {
+		      $('.menu').toggle("slide");
+		    });
+		});
+    // --> 
 </script>
 </head>
 
@@ -103,8 +110,22 @@
 				</tr>
 				<tr>
 					<td colspan="3" align="center"><%= message %></td>
+				</tr>
+				
 			</table>
 			</td>
+		</tr>
+		<tr>
+		<td>
+		<div id="show">Click to Show/ Hide Server Details</div>
+		 <div class="menu" style="display: none;">
+		    <ol>
+			    <li>REDIS_SERVER: </li>
+			    <li>REDIS_PORT:</li>
+			    <li>CALL TIME: </li>
+		    </ol>
+		 </div>
+		</td>
 		</tr>
 	</table>
 
