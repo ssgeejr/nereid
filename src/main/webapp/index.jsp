@@ -5,7 +5,7 @@
 <%@page import="java.sql.*, javax.sql.*, javax.naming.*, java.util.*"%>
 <%@page import="redis.nereid.*" %>
 <%
-	String message = "";
+	String message = "&nbsp";
 	String value = "";
 	String getvalue = "";
 	String action = null;
@@ -37,7 +37,7 @@
 					return;
 				}
 				value = rdm.getValue(getvalue);
-				message = "";
+				message = "&nbsp";
 			}
 			
 		}catch(Exception ex){
