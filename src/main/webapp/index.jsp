@@ -2,9 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 
-<%@page import="java.sql.*, javax.sql.*, javax.naming.*, java.util.*"%>
+<%@page import="java.util.*, java.util.Map.Entry"%>
 <%@page import="redis.nereid.*" %>
 <%
+	Map<String, String> env = System.getenv();
+    String location = env.get("TOMCAT_LOCATION");
+    String server = env.get("REDIS_SERVER");
+    String port = env.get("REDIS_PORT");
+    long start = System.currentTimeMillis();
+
 	String message = "&nbsp";
 	String value = "";
 	String getvalue = "";
@@ -44,12 +50,15 @@
 			ex.printStackTrace();
 			message = ex.getMessage();
 		}
+		
+		long end = System.currentTimeMillis();
+		String runtime = String.valueOf((end-start))
 	}
 %>
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Nereid Test Instance</title>
+<title>Nereid Test Instance [<%= location %>]</title>
 <style type="text/css">
 .auto-style1 {
 	text-align: right;
@@ -120,9 +129,9 @@
 		<div id="show">Click to Show/ Hide Server Details</div>
 		 <div class="menu" style="display: none;">
 		    <ol>
-			    <li>REDIS_SERVER: </li>
-			    <li>REDIS_PORT:</li>
-			    <li>CALL TIME: </li>
+			    <li>REDIS_SERVER: <%= server  %></li>
+			    <li>REDIS_PORT: <%= port %></li>
+			    <li>RUNTIME: <%= runtime %></li>
 		    </ol>
 		 </div>
 		</td>
