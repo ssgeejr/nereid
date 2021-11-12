@@ -92,7 +92,7 @@
 
 	<table style="width: 450px; border:1px solid black;margin-left:auto;margin-right:auto;" >
 		<tr>
-			<td style="text-align:center">Redis Active-Active Testing</td>
+			<td style="text-align:center">Redis Active-Active Testing [<%= location %>]</td>
 		</tr>
 		<tr>
 			<td>

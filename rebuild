@@ -7,5 +7,6 @@ docker run -ti --rm --name nereid \
 	-e REDIS_SERVER='redisv.local' \
 	-e REDIS_PORT='12000' \
 	-e REDIS_AUTH='12345' \
+	-e TOMCAT_LOCATION='SGEE' \
 	-p 8080:8080 nereid
 cd ..
