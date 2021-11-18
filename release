@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd docker
+docker build -t ioexcept/nereid:1.1 .
+docker push ioexcept/nereid:1.1
+cd ..
