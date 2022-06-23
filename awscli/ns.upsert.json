@@ -1,0 +1,24 @@
+{
+    "Comment": "Update record to add new CNAME record",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "dca.dretest.mobile.",
+                "Type": "NS",
+                "TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "node1.dca.dretest.mobile"
+                    },
+					{
+                        "Value": "node2.dca.dretest.mobile"
+                    },
+					{
+                        "Value": "node3.dca.dretest.mobile"
+                    }
+                ]
+            }
+        }
+    ]
+}
