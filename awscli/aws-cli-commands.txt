@@ -52,6 +52,10 @@ aws route53 create-hosted-zone --name dretest.mobile --caller-reference 06232022
 aws route53 change-resource-record-sets --hosted-zone-id Z083210585SHRD4HLWH6 --change-batch file://ns.upsert.json
 
 
+******** VPC ********
+aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-2f09a348" --query "Subnets[*].{ID:SubnetId,CIDR:CidrBlock}"
+
+
 
 
 
