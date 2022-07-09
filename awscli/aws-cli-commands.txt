@@ -12,8 +12,68 @@ Type: t2.2xlarge
 
 Volume Size: 200 GB Volume 
 
+*** AWS PROFILES ***
+aws configure list-profiles
+
+====CONFIG====
+[default]
+region = us-east-2
+output = json
+
+[profile dev-user]
+region = us-west-1
+output = json
+
+====CREDENTIALS====
+[default]
+aws_access_key_id = 123123123123123123
+aws_secret_access_key = 123123123123123123
+
+[dev-user]
+aws_access_key_id = 123123123123123123
+aws_secret_access_key = 123123123123123123
+
+aws ec2 describe-instances --profile dev-user
+
+***** EC2 CLI SKELETONS *****
+https://docs.aws.amazon.com/cli/v1/userguide/cli-usage-skeleton.html
+aws ec2 run-instances --generate-cli-skeleton input > skeletons\ec2runinst.json
+
+--cli-input-json
+
+
+***** EC2 RUN INSTANCES *****
 
 aws ec2 run-instances --image-id ami-07567e5457f5effa2 --count 1 --instance-type t2.2xlarge --key-name dretest --security-group-ids sg-########## --subnet-id subnet-6e7f829e --block-device-mappings {"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":200}}
+
+
+
+*** RUN INSTANCE WITH TAGGING ***
+https://serverfault.com/questions/724501/how-to-add-a-tag-when-launching-an-ec2-instance-using-aws-clis
+
+
+USE THIS for public IP:  --associate-public-ip-address and this for deying public IP: --no-associate-public-ip-address
+
+aws ec2 run-instances --image-id ami-abc12345 --count 1 \
+--instance-type t2.micro --key-name MyKeyPair \
+--subnet-id subnet-6e7f829e \
+--tag-specifications 'ResourceType=instance,Tags=[{Key=Application,Value=dre},{Key=Ou,Value=dre-instance1}]' 'ResourceType=volume,Tags=[{Key=Application,Value=dre},{Key=Ou,Value=dre-instance1}]'
+
+
+aws ec2 run-instances \
+    --image-id ami-abc12345 \
+    --count 1 \
+    --instance-type t2.micro \
+    --key-name MyKeyPair \
+    --subnet-id subnet-6e7f829e \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
+
+
+
+
+
+
+
 
 ********ROUTE53*********
 
@@ -53,6 +113,7 @@ aws route53 change-resource-record-sets --hosted-zone-id Z083210585SHRD4HLWH6 --
 
 
 ******** VPC ********
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-subnets-commands-example.html
 aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-2f09a348" --query "Subnets[*].{ID:SubnetId,CIDR:CidrBlock}"
 
 
