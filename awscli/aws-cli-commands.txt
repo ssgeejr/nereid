@@ -47,6 +47,8 @@ aws ec2 run-instances --generate-cli-skeleton input > skeletons\ec2runinst.json
 aws ec2 run-instances --image-id ami-07567e5457f5effa2 --count 1 --instance-type t2.2xlarge --key-name dretest --security-group-ids sg-########## --subnet-id subnet-6e7f829e --block-device-mappings {"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":200}}
 
 
+***** USER DATA FILE *****
+--user-data file://./yaml/master.yaml
 
 *** RUN INSTANCE WITH TAGGING ***
 https://serverfault.com/questions/724501/how-to-add-a-tag-when-launching-an-ec2-instance-using-aws-clis
@@ -69,6 +71,13 @@ aws ec2 run-instances \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
 
 
+aws ec2 run-instances --image-id ami-${AMI_ID} --count 1 \
+--instance-type ${TYPE} --key-name ${KEY_NAME} \
+--subnet-id subnet-${SUBNET} \
+--associate-public-ip-address \
+--security-group-ids sg-${SECURITY_GROUPID} \
+--block-device-mappings 'DeviceName=/dev/sda1,Ebs={DeleteOnTermination=true,VolumeSize=200}' \
+--tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=${NAME},{Key=Application,Value=${APP}},{Key=Ou,Value=${APP}-${OU}}]' 'ResourceType=volume,Tags=[{Key=Name,Value=${NAME}_vol},{Key=Application,Value=${APP}},{Key=Ou,Value=${APP}-${OU}}]'
 
 
 
