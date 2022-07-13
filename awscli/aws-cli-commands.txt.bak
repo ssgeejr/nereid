@@ -1,0 +1,134 @@
+
+INSTANCE DETAILS: 
+
+Image: RHEL-7.8_HVM-20200803-x86_64-0-Hourly2-GP2
+
+OREGON: 
+RHEL-7.8_HVM-20200803-x86_64-0-Hourly2-GP2
+ami-07567e5457f5effa2
+Provided by Red Hat, Inc.
+
+Type: t2.2xlarge
+
+Volume Size: 200 GB Volume 
+
+
+aws ec2 run-instances --image-id ami-07567e5457f5effa2 --count 1 --instance-type t2.2xlarge --key-name dretest --security-group-ids sg-########## --subnet-id subnet-6e7f829e --block-device-mappings {"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":200}}
+
+********ROUTE53*********
+
+https://www.learnaws.org/2022/02/04/aws-cli-route53-guide/#how-to-create-a-hosted-zone
+
+aws route53 list-resource-record-set
+
+aws route53 create-hosted-zone --name dretest.mobile --caller-reference 06232022
+
+{
+    "Location": "https://route53.amazonaws.com/2013-04-01/hostedzone/Z083210585SHRD4HLWH6",
+    "HostedZone": {
+        "Id": "/hostedzone/Z083210585SHRD4HLWH6",
+        "Name": "dretest.mobile.",
+        "CallerReference": "06232022",
+        "Config": {
+            "PrivateZone": false
+        },
+        "ResourceRecordSetCount": 2
+    },
+    "ChangeInfo": {
+        "Id": "/change/C069000511E3OFU17NZUD",
+        "Status": "PENDING",
+        "SubmittedAt": "2022-06-23T17:56:08.557000+00:00"
+    },
+    "DelegationSet": {
+        "NameServers": [
+            "ns-1999.awsdns-57.co.uk",
+            "ns-556.awsdns-05.net",
+            "ns-69.awsdns-08.com",
+            "ns-1419.awsdns-49.org"
+        ]
+    }
+}
+
+aws route53 change-resource-record-sets --hosted-zone-id Z083210585SHRD4HLWH6 --change-batch file://ns.upsert.json
+
+
+******** VPC ********
+aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-01a0015b5266597fd" --query "Subnets[*].{ID:SubnetId,CIDR:CidrBlock}"
+PS C:\dev\tmobile\nereid> aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-01a0015b5266597fd" --query "Subnets[*].{ID:SubnetId,CIDR:CidrBlock}"
+[
+    {
+        "ID": "subnet-074992092c31503d1",
+        "CIDR": "10.6.168.128/26"
+    },
+    {
+        "ID": "subnet-05c41d76a03cf0d98",
+        "CIDR": "100.64.94.128/26"
+    },
+    {
+        "ID": "subnet-0598db383c40225d7",
+        "CIDR": "10.6.168.64/26"
+    },
+    {
+        "ID": "subnet-04ee0e019d72ee5f3",
+        "CIDR": "100.64.94.0/26"
+    },
+    {
+        "ID": "subnet-0b4a85395888fb918",
+        "CIDR": "10.6.168.0/26"
+    },
+    {
+        "ID": "subnet-05190af0ecf692b3a",
+        "CIDR": "100.64.94.64/26"
+    }
+]
+
+
+aws ec2 run-instances --image-id ami-07567e5457f5effa2 --count 1 --instance-type t2.2xlarge --key-name dretest --security-group-ids sg-09c3879eb7b65b6af --subnet-id subnet-074992092c31503d1 --block-device-mappings file://rootdrive.json
+
+
+********EC2*********
+
+aws ec2 describe-key-pairs
+
+
+aws ec2 create-key-pair --key-name MyKeyPair
+
+LINUX:
+ aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
+ 
+POWERSHELL: 
+aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text | out-file -encoding ascii -filepath MyKeyPair.pem
+
+aws ec2 run-instances --image-id ami-d2c924b2 --instance-type m4.large --block-device-mappings {"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":100}}
+
+**LAUNCH EC2**
+$ aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
+
+--block-device-mappings "[{\"DeviceName\":\"/dev/sdf\",\"Ebs\":{\"VolumeSize\":20,\"DeleteOnTermination\":false}}]"
+
+aws ec2 describe-vpcs
+
+https://gist.github.com/andytumelty/3651ef79fc00908b4d9f5f6bba05489a
+# display VPC ID, CIDR Block and Name
+aws ec2 --output text --query 'Vpcs[*].{VpcId:VpcId,Name:Tags[?Key==`Name`].Value|[0],CidrBlock:CidrBlock}' describe-vpcs
+
+
+********SECURITY GROUPS*********
+create a security group
+https://docs.aws.amazon.com/cli/latest/reference/ec2/create-security-group.html
+
+aws ec2 create-security-group --group-name MySecurityGroup --description "My security group"
+
+aws ec2 create-security-group --group-name dreoregon --description "Digital Redit Enterprise Oregon" --vpc-id vpc-1a2b3c4d
+
+
+aws ec2 describe-security-groups --group-ids sg-903004f8
+
+aws ec2 authorize-security-group-ingress --group-id sg-903004f8 --protocol tcp --port 22 --cidr x.x.x.x
+
+
+
+[[[ aws ec2 delete-security-group --group-id sg-903004f8 ]]]
+
+
+
